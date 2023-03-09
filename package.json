@@ -1,0 +1,71 @@
+{
+    "name": "chatgpt-commit",
+    "displayName": "chatgpt-commit",
+    "description": "Generate commit message with ChatGPT api",
+    "version": "0.0.2",
+    "publisher": "Nicolas Brobst",
+    "engines": {
+        "vscode": "^1.76.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "chatgpt-commit.commitChatGpt",
+                "title": "ChatGPT Commit : Generate a commit message"
+            },
+            {
+                "command": "chatgpt-commit.setProjectKeywords",
+                "title": "ChatGPT Commit : Set project keywords"
+            },
+            {
+                "command": "chatgpt-commit.setApiKey",
+                "title": "ChatGPT Commit : Set API key"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "ChatGPT Commit",
+            "properties": {
+                "chatgpt-commit.chatGptApikey": {
+                    "type": "string",
+                    "default": "",
+                    "description": "ChatGPT API key"
+                },
+                "chatgpt-commit.keywords": {
+                    "type": "string",
+                    "default": "",
+                    "description": "List of keywords to use in commit messages"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "lint": "eslint .",
+        "pretest": "yarn run lint",
+        "test": "node ./test/runTest.js",
+        "vscode:prepublish": "yarn run build:base --minify",
+        "build:base": "echo 'ok'",
+        "build": "yarn build:base --sourcemap",
+        "package": "mkdir -p dist && vsce package -o dist/noteberry.vsix --yarn",
+        "deploy:local": "yarn package && code --install-extension dist/ext.vsix --force"
+    },
+    "devDependencies": {
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "16.x",
+        "@types/vscode": "^1.76.0",
+        "@vscode/test-electron": "^2.2.3",
+        "eslint": "^8.34.0",
+        "glob": "^8.1.0",
+        "mocha": "^10.2.0",
+        "typescript": "^4.9.5"
+    },
+    "dependencies": {
+        "openai": "^3.2.1"
+    }
+}
