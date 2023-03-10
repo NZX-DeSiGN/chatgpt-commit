@@ -45,14 +45,8 @@
         }
     },
     "scripts": {
-        "lint": "eslint .",
-        "pretest": "yarn run lint",
-        "test": "node ./test/runTest.js",
-        "vscode:prepublish": "yarn run build:base --minify",
-        "build:base": "echo 'ok'",
-        "build": "yarn build:base --sourcemap",
-        "package": "mkdir -p dist && vsce package -o dist/noteberry.vsix --yarn",
-        "deploy:local": "yarn package && code --install-extension dist/ext.vsix --force"
+        "package": "vsce package -o dist/chatgpt-commit.vsix --yarn --allow-missing-repository",
+        "install": "code --install-extension dist/chatgpt-commit.vsix --force "
     },
     "devDependencies": {
         "@types/glob": "^8.1.0",
