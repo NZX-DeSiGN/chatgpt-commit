@@ -171,18 +171,27 @@ let commit = (cwd, message) => {
         })
     })
 }
+
 let getAiCommitMessage = async (client, keywords, subject, diff) => {
+    let config = vscode.workspace.getConfiguration(extension)
+    let systemPrompt = config.get("systemPrompt").replaceAll("\\n", "\n")
+    let userPrompt = config
+        .get("userPrompt")
+        .replaceAll("[keywords]", keywords)
+        .replaceAll("[subject]", subject)
+        .replaceAll("[diff]", diff)
+        .replaceAll("\\n", "\n")
+
     const completion = await client.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
             {
                 role: "system",
-                content:
-                    "As a professional web developer, require project keywords, subject, Git diff as input and generate a commit message using following template\n[type]: [Concise commit message]\n\n[Bullet list commit summary]\n\nTypes: fix feat build chore docs style refactor",
+                content: systemPrompt,
             },
             {
                 role: "user",
-                content: `Keywords : ${keywords}\nSubject : ${subject}\nDiff :\n${diff}`,
+                content: userPrompt,
             },
         ],
     })

@@ -40,6 +40,18 @@
                     "type": "string",
                     "default": "",
                     "description": "List of keywords to use in commit messages"
+                },
+                "chatgpt-commit.systemPrompt": {
+                    "type": "string",
+                    "default": "As a professional web developer, require project keywords, subject, Git diff as input and generate a commit message using following template\\n[type]: [Concise commit message]\\n\\n[Bullet list commit summary]\\n\\nTypes: fix feat build chore docs style refactor",
+                    "description": "The system prompt provided to ChatGPT api",
+                    "multiline": true
+                },
+                "chatgpt-commit.userPrompt": {
+                    "type": "string",
+                    "default": "Keywords : [keywords]\\nSubject : [subject]\\nDiff :\\n[diff]",
+                    "description": "The user prompt provided to ChatGPT api. You can use [keywords] [subject] [diff] variables.",
+                    "multiline": true
                 }
             }
         }
