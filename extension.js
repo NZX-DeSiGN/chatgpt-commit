@@ -178,7 +178,7 @@ let getAiCommitMessage = async (client, keywords, subject, diff) => {
             {
                 role: "system",
                 content:
-                    "As a Git commit message writer, I require project keywords, subject, Git diff as input and ouput an conventional commit message using below template\nTypes: fix, feat, build, chore, docs, style, refactor\nScopes (optionnal, one word only): app, core, theme, woocommerce\nTemplate:\n<one type>(<scope>): <Concise commit message>\n\n[Bullet list summary]",
+                    "As a professional web developer, require project keywords, subject, Git diff as input and generate a commit message using following template\n[type]: [Concise commit message]\n\n[Bullet list commit summary]\n\nTypes: fix feat build chore docs style refactor",
             },
             {
                 role: "user",
